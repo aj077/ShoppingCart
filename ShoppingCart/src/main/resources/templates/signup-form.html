@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CUSTOMER SIGNUP</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 align="center">NEW CUSTOMER SIGN UP FORM</h1>
+	<table border="1" , align="center" style="width: 20%">
+		<form th:action="@{/submit}" method="post" th:object="${customer}">
+		<tr>
+			<td>NAME:</td>
+			<td><input type="text" th:field="*{name}" style="width: 300px"/></td>
+		</tr>
+		<tr>
+			<td>EMAIL:</td>
+			<td><input type="email" th:field="*{email}" style="width: 300px"/><span th:text="${error}" class="error"></span></td>
+		</tr>
+		<tr>
+			<td>PASSWORD:</td>
+			<td><input type="password" th:field="*{password}" style="width: 300px"/></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2"><input type="submit"/><a th:href="@{/}"><button type="button">Home</button></a></td>
+		</tr>
+		</form>
+	</table>
+</body>
+</html>

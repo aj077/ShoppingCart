@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Products List</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 align="center" style="margin-bottom: 20px">Products List</h1>
+	<div align="center"><a th:href="@{/admin/add-product}"><button>ADD PRODUCT</button></a></div>
+	<table align="center" style="margin-top: 20px" border="1" width="60%">
+		<thead>
+			<tr>
+				<th>NAME</th>
+				<th>PRICE (INR)</th>
+				<th>IN STOCK</th>
+				<th>IMAGE</th>
+				<th>ACTION</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="prd:${products}">
+				<td th:text="${prd.name}" align="center"></td>
+				<td th:text="${prd.price}" align="center"></td>
+				<td th:text="${prd.inStock}" align="center"></td>
+				<td align="center"><img class="myImage" th:src="${prd.imagepath}" alt="No Image"/></td>
+				<td align="center"><a th:href="@{/admin/view-product-details(productId=${prd.id})}"><button>View Details</button></a>
+					<a th:href="@{/admin/update-product(productId=${prd.id})}"><button>Update</button></a>
+					<a th:href="@{/admin/delete-product(productId=${prd.id})}"><button onclick="return(confirm('Are you sure you want to Delete this Product!!!'))">Delete</button></a></td>	
+			</tr>
+		</tbody>
+	</table>
+	<div style="margin-top: 30px" align="center">
+		<a th:href="@{/admin/home}"><button>Home</button></a>
+	</div>
+</body>
+</html>

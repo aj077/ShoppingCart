@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>One Stop Shop</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container">
+		<img th:src="@{/images/logo.jpg}" class="logo"/>
+		<div class="content">
+			<p align="center" style="position:relative;">
+				<span style="font-size: 70px">Welcome to One Stop Shop...</span> <br>
+				<span style="margin-left: 40px; font-size: 25px">An online shop for all your needs</span>
+				<span sec:authorize="!isAuthenticated()" style="position:absolute; top:5px; left:90%;"><a th:href="@{/login}"><button>Login</button></a></span>
+				<span sec:authorize="!isAuthenticated()" style="position:absolute; top:5px; left:94%;"><a	th:href="@{/signup}"><button>SignUp</button></a></span> 
+				<span sec:authorize="isAuthenticated()" style="position:absolute; top:5px; left:90%;"><a th:href="@{/logout}"><button>Logout</button></a></span>
+				<span sec:authorize="isAuthenticated()" style="position:absolute; top:5px; left:94%;"><a th:href="@{/view-cart}"><button>View Cart</button></a></span>
+				<span sec:authorize="isAuthenticated()" style="position:absolute; top:33px; left:91%;"><a th:href="@{/order-history}"><button>Order History</button></a></span>
+			</p>
+			<!-- <img th:src="@{/images/online-shop.jpg}" class="myImage" style="display: block; margin-left: auto; margin-right: auto;" /> -->
+			<span sec:authorize="isAuthenticated()" style="font-style: italic;font-size: 20px; position:absolute; top:170px;">				
+					Welcome, <span sec:authentication="name"></span>
+			</span>
+			<h1 align="center">List of Products Available...</h1>
+			<table align="center" style="margin-top: 20px" border="1" width="60%">
+				<thead>
+					<tr>
+						<th>NAME</th>
+						<th>PRICE (INR)</th>
+						<th>IN STOCK</th>
+						<th>IMAGE</th>
+						<th>ACTION</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prd:${products}">
+						<td th:text="${prd.name}" align="center"></td>
+						<td th:text="${prd.price}" align="center"></td>
+						<td th:text="${prd.inStock}" align="center"></td>
+						<td align="center"><img class="myImage"
+							th:src="${prd.imagepath}" alt="No Image" /></td>
+						<td align="center"><a th:href="@{/view-product(productId=${prd.id})}"><button>View Details</button></a>
+										   <span sec:authorize="isAuthenticated()"><a th:href="@{/add-cart(productId=${prd.id})}"><button>Add To Cart</button></a></span>
+										   <span sec:authorize="isAuthenticated()"><a th:href="@{/add-comments(productId=${prd.id})}"><button>Add Comments</button></a></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pagination">
+			  <a href="#">&laquo;</a>
+			  <a href="#">1</a>
+			  <a class="active" href="#">2</a>
+			  <a href="#">3</a>
+			  <a href="#">4</a>
+			  <a href="#">5</a>
+			  <a href="#">6</a>
+			  <a href="#">&raquo;</a>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

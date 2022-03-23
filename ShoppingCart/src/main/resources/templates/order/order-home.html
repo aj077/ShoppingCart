@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>My Orders</title>
+</head>
+<body>
+	<h1 align="center">My Orders!!!</h1>
+	<h3 align="center">Order Details...</h3>
+	<hr>
+	<table align="center" style="margin-top: 20px; margin-bottom: 20px"	border="1" width="70%">
+		<tr>
+			<th>Product Name</th>
+			<th>Product Price</th>
+			<th>Product Quantity</th>
+		</tr>
+		<tr th:each="item:${order.orderItems}">
+			<td th:text="${item.product.name}" align="center"></td>
+			<td th:text="${item.product.price}" align="center"></td>
+			<td th:text="${item.quantity}" align="center"></td>
+		</tr>
+	</table>
+	<hr>
+	<h3 align="center">
+		Total Order Amount: <span th:text="${order.amount}"></span>
+	</h3>
+	<br>
+	<div align="center">
+		<a th:href="@{/payment(orderId=${order.id})}"><button onclick="return(confirm('Are you sure you want to proceed for Payment'))">Proceed To Payment</button></a>
+		<a th:href="@{/view-cart}"><button>View Cart</button></a>
+		<br><br>
+		<a th:href="@{/}"><button>Home</button></a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<div align="center" style="margin-top: 40px">
+		<img style="height: 200px; width: 480px;" th:src="${product.imagepath}" alt="profile-photo" />
+		<hr>
+		<h3>Product Name: 
+			<span th:text="${product.name}"></span>
+			<br>
+			<br>
+			Product Price: <span th:text="${product.price}"></span>
+			<br>
+			<br>
+			Present in Stock: <span th:text="${product.inStock}"></span>
+			<br>
+			<br>
+			Customer Reviews:
+		</h3>
+		<table border="1" style="width: 40%">
+			<thead>
+				<tr>
+					<th align="center">Comments</th>
+					<th align="center">Ratings</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cmm:${product.comments}">
+				<td th:text="${cmm.text}" align="center"></td>
+				<td th:text="${cmm.rating}" align="center"></td>
+			</tr>
+			</tbody>
+		</table>
+		<br><hr>
+		<a th:href="@{/}"><button>Home</button></a>
+	</div>
+</body>
+</html>

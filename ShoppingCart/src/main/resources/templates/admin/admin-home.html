@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>ADMIN HOME</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1 align="center">Welcome Admin, <span sec:authentication="name"></span></h1>
+	<div align="center">
+		<a th:href="@{/admin/products-list}"><button>Products List</button></a>
+		<a th:href="@{/admin/customers-list}"><button>Customers List</button></a>
+	</div>
+	<div align="center" style="margin-top: 35px">
+		<a th:href="@{/logout}"><button>Logout</button></a>
+	</div>
+</body>
+</html>

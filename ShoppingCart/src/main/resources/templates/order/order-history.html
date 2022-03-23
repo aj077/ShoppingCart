@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>ORDER - History</title>
+</head>
+<body>
+	<h1 align="center">
+		Welcome, <span sec:authentication="name"></span>...
+	</h1>
+	<h3 align="center">Your previous order details...</h3>
+	<table align="center" border="1" width="60%">
+		<tr>
+			<th>Order Date</th>
+			<th>Order Amount</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="order:${orders}">
+			<td th:text="${order.date}" align="center"></td>
+			<td th:text="${order.amount}" align="center"></td>
+			<td align="center"><a th:href="@{/view-order-details(orderId=${order.id})}"><button>View Details</button></a></td>
+		</tr>
+	</table>
+	<hr><br>
+	<div align="center"><a th:href="@{/}"><button>Home</button></a></div>
+</body>
+</html>

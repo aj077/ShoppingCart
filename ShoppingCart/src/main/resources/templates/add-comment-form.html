@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<div align="center" style="margin-top: 40px">
+		<img style="height: 200px; width: 480px;" th:src="${product.imagepath}" alt="profile-photo" />
+		<hr>
+		<h3>Product Name: 
+			<span th:text="${product.name}"></span>
+			<br>
+			<br>
+			Product Price: <span th:text="${product.price}"></span>
+			<br>
+			<br>
+			Present in Stock: <span th:text="${product.inStock}"></span>
+		</h3>
+		<hr>
+		<form th:action="@{/submit-comments(productId=${product.id})}" th:object="${comments}" method="post">
+			<h4>Enter Your Review:</h4>
+			<textarea style="resize:none" rows="10" cols="50" th:field="*{text}" placeholder="Write here"></textarea>
+			<br><br>
+			Enter Rating from 1 to 5:<input type="number" th:field="*{rating}"/>
+			<br><br>
+			<input type="submit"/>
+		</form>
+		<br>
+		<hr>
+		<a th:href="@{/}"><button>Home</button></a>
+	</div>
+</body>
+</html>

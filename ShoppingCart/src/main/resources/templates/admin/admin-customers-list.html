@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customers List</title>
+</head>
+<body>
+<h1 align="center">Customers List</h1>
+	<table align="center" style="margin-top: 20px" border="1" width="60%">
+		<thead>
+			<tr>
+				<th>NAME</th>
+				<th>EMAIL</th>
+				<th>ROLE</th>
+				<th>CUSTOMER SINCE</th>
+				<th>ACTION</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cust:${customers}">
+				<td th:text="${cust.name}" align="center"></td>
+				<td th:text="${cust.email}" align="center"></td>
+				<td th:text="${cust.role}" align="center"></td>
+				<td th:text="${cust.customerSince}" align="center"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div style="margin-top: 30px" align="center">
+		<a th:href="@{/admin/home}"><button>Home</button></a>
+	</div>
+</body>
+</html>

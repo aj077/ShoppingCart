@@ -1,0 +1,52 @@
+@charset "ISO-8859-1";
+
+.myImage{
+	height:140px;
+	width:190px;
+	object-fit:cover;
+}
+
+.error{
+	color:red;
+}
+.container {
+	position: relative;	
+}
+
+.container .content {
+  position: absolute;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(255, 140, 0, 0.2); /* Black background with 0.5 opacity */
+  color: black;
+  width: 100%;
+}
+
+.logo {
+	position: absolute;
+	left: 58%;
+	top: 200px;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+	opacity: 0.4;	
+}
+
+.pagination {
+	position: absolute;
+	left: 42%;
+	display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

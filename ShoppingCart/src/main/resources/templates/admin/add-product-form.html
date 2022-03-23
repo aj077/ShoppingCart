@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>ADD PRODUCT FORM</title>
+</head>
+<body>
+	<h1 align="center">ADD Products here...</h1>
+	<table align="center" border="1" class="table" id="myTable">
+		<form th:action="@{/admin/save-product}" method="post" th:object="${product}" enctype="multipart/form-data">
+		<tr>
+			<input type="hidden" th:field="*{id}"/>
+			<td>Enter Product Name:<input type="text" th:field="*{name}" placeholder="Enter Here"/></td>
+			<td>Enter Price:<input type="number" th:field="*{price}" placeholder="0"/></td>
+			<td>In Stock:<input type="radio" th:field="*{inStock}" value="1" Checked/>Yes
+						 <input type="radio" th:field="*{inStock}" value="0"/>No
+			</td>
+			<td>Enter Image:<input type="file" th:field="*{file}"></td>
+		</tr>
+		<tfoot>
+		<tr>
+			<td align="center" colspan="4">
+			<input type="submit"></td>
+		</tr>
+		</tfoot>
+		</form>
+	</table>
+	<div align="center" style="margin-top: 20px">
+		<a th:href="@{/admin/home}"><button>HOME</button></a>
+	</div>
+</body>
+</html>

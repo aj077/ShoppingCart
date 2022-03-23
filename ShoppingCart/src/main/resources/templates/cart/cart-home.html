@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>OSS-CART HOME PAGE</title>
+</head>
+<body>
+	<h1 align="center">OSS Shopping Cart</h1>
+	<div th:if="${!(cart.customer.name).isEmpty()}">
+	<h2 align="center">
+		Welcome, <span th:text="${cart.customer.name}"></span>!!!
+	</h2>
+	</div>
+	<hr>
+	<div th:if="${!(cart.cartItems).isEmpty()}"><h3 align="center">Products present in your cart...</h3></div>
+	<div th:if="${(cart.cartItems).isEmpty()}" align="center" class="error"><h3>No Items present in your cart!!!</h3></div>
+	<table align="center" style="margin-top: 20px; margin-bottom: 20px" border="1" width="70%">
+		<tr>
+			<th>Product Name</th>
+			<th>Product Price</th>
+			<th>Product Image</th>
+			<th>Product Quantity</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="crtItem:${cartItems}">
+			<td th:text="${crtItem.product.name}" align="center"></td>
+			<td th:text="${crtItem.product.price}" align="center"></td>
+			<td align="center"><img class="myImage" th:src="${crtItem.product.imagepath}" alt="No Image"/></td>
+			<td th:text="${crtItem.quantity}" align="center"></td>
+			<td align="center"><a th:href="@{/add-cart(productId=${crtItem.product.id})}"><button style="padding: 5px 10px;font-size: 25px">+</button></a>
+				<a th:href="@{/delete-cart(productId=${crtItem.product.id})}"><button style="padding: 5px 10px;font-size: 25px">-</button></a>
+				<a th:href="@{/order(productId=${crtItem.product.id})}"><button style="padding: 5px 10px;font-size: 25px">Order Now</button></a>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+	<div align="center"><a th:href="@{/}"><button>Home</button></a>
+						<a th:href="@{/order-all(cartId=${cart.id})}"><button>Order All</button></a>
+	</div>
+</body>
+</html>
